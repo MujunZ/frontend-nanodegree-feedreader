@@ -103,32 +103,24 @@ $(function() {
     });
 
     /* TODO: Write a new test suite named "New Feed Selection"*/
-    xdescribe('New Feed Selection', function () {
+    describe('New Feed Selection', function () {
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-         var contents = [];
-         beforeEach(function (done) {
-            jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
-            for(var i = 0, length1 = allFeeds.length; i < length1; i++){
-                loadFeed(i,function () {
-                    contents.push($('.feed').html())
-                });
-            };
-            done();
-         });
+         var oldContent, newContent;
+         beforeAll(function (done) {
+             loadFeed(0,function () {
+                oldContents = $('.feed .entry').text();
+                loadFeed(1,done);
+             });
+        });
 
-         it('should update the contents', function (done) {
-             //setTimeout(function () {
-                isDuplicate = contents.some(function (item,idx) {
-                    return contents.indexOf(contents[idx]) != idx;
-                })
-                expect(contents[0]).toBeDefined();
-                expect(isDuplicate).toBe(false);
-                done();
-             //},5000);
-             //done(); why should I put done() in setTimeout()?
-         });
+         it('Load a new feed', function (done) {
+            newContents = $('.feed .entry').text();
+            var update = (newContents != oldContents);
+            expect(update).toBe(true);
+            done();
+         })
     });
 }());
