@@ -1,3 +1,17 @@
+#All steps required to successfully run the application
+
+- RSS Feeds
+ - are defined
+ - urls are defined and not empty
+ - names are defined and not empty
+- The menu
+ - hides the menu by defualt
+ - toggle the mene when click the icon
+- Initial Entries
+ - should have at least a single .entry element
+- New Feed Selection
+ - should update the contents
+
 # Project Overview
 
 In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.
