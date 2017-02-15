@@ -61,6 +61,7 @@ $(function() {
          */
          it('hides the menu by defualt', function () {
             var cl = $('body').attr('class');
+            expect(cl).toBeDefined();
             expect(cl).toBe('menu-hidden');
          })
 
@@ -76,6 +77,7 @@ $(function() {
             expect(cl).toBe('');
             menuIcon.click();
             var cl = $('body').attr('class');
+            expect(cl).toBeDefined();
             expect(cl).toBe('menu-hidden');
           })
     });
@@ -97,6 +99,7 @@ $(function() {
          it('should have at least a single .entry element', function (done) {
              setTimeout(function () {
                 var entry = $('.entry');
+                expect(entry).toBeDefined();
                 expect(entry.length).toBeGreaterThan(1);
                 done(); 
              },1000);
@@ -125,6 +128,7 @@ $(function() {
                 isDuplicate = contents.some(function (item,idx) {
                     return contents.indexOf(contents[idx]) != idx;
                 })
+                expect(contents[0]).toBeDefined();
                 expect(isDuplicate).toBe(false);
                 done();
              },5000);
