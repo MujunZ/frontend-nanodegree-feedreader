@@ -90,7 +90,6 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
          beforeEach(function (done) {
-            var id = Math.floor(Math.random()*4);
             loadFeed(0);
             done();
          });
@@ -98,16 +97,38 @@ $(function() {
          it('should have at least a single .entry element', function (done) {
              setTimeout(function () {
                 var entry = $('.entry');
-                expect(entry.length).toBeGreaterThan(0);
+                expect(entry.length).toBeGreaterThan(1);
                 done(); 
              },1000);
          });
     });
-    /* TODO: Write a new test suite named "New Feed Selection"
 
+    /* TODO: Write a new test suite named "New Feed Selection"*/
+    describe('New Feed Selection', function () {
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+         var oldContent, newContent;
+         beforeEach(function (done) {
+            var id = 0;
+            loadFeed(id);
+            oldContent = $('.feed').html();
+            id_new = Math.floor(Math.random()*4);
+            if(id_new != id){
+                loadFeed(id_new);
+                id = Math.floor(Math.random()*4);
+            };
+            done();
+         });
 
+         it('should update the contents', function (done) {
+             setTimeout(function () {
+                 newContent = $('.feed').html();
+                 update = (newContent != oldContent);
+                 expect(update).toEqual(true);
+                 done();
+             },1000);
+         });
+    });
 }());
