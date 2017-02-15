@@ -114,8 +114,8 @@ $(function() {
             var id = 0;
             loadFeed(id);
             oldContent = $('.feed').html();
-            id_new = Math.floor(Math.random()*4);
-            if(id_new != id){
+            id_new = Math.floor(Math.random()*3 + 1);
+            while(id_new != id){
                 loadFeed(id_new);
                 id = Math.floor(Math.random()*4);
             };
