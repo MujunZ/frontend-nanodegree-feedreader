@@ -109,26 +109,26 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-         var oldContent, newContent;
+         var contents = [];
          beforeEach(function (done) {
-            var id = 0;
-            loadFeed(id);
-            oldContent = $('.feed').html();
-            id_new = Math.floor(Math.random()*3 + 1);
-            while(id_new != id){
-                loadFeed(id_new);
-                id = Math.floor(Math.random()*4);
+            jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+            for(var i = 0, length1 = allFeeds.length; i < length1; i++){
+                loadFeed(i,function () {
+                    contents.push($('.feed').html())
+                });
             };
             done();
          });
 
          it('should update the contents', function (done) {
              setTimeout(function () {
-                 newContent = $('.feed').html();
-                 update = (newContent != oldContent);
-                 expect(update).toEqual(true);
-                 done();
-             },1000);
+                isDuplicate = contents.some(function (item,idx) {
+                    return contents.indexOf(contents[idx]) != idx;
+                })
+                expect(isDuplicate).toBe(false);
+                done();
+             },5000);
+             //done(); why should I put done() in setTimeout()?
          });
     });
 }());
