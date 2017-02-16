@@ -61,7 +61,6 @@ $(function() {
          */
         it('hides the menu by defualt', function() {
             var cl = $('body').hasClass('menu-hidden');
-            expect(cl).toBeDefined();
             expect(cl).toBe(true);
         })
 
@@ -73,12 +72,11 @@ $(function() {
         it('toggle the mene when click the icon', function() {
             var menuIcon = $('.menu-icon-link');
             menuIcon.click();
-            var cl = $('body').attr('class');
-            expect(cl).toBe('');
+            var cl = $('body').hasClass('menu-hidden');
+            expect(cl).toBe(false);
             menuIcon.click();
-            var cl = $('body').attr('class');
-            expect(cl).toBeDefined();
-            expect(cl).toBe('menu-hidden');
+            var cl = $('body').hasClass('menu-hidden');
+            expect(cl).toBe(true);
         })
     });
 
@@ -95,10 +93,9 @@ $(function() {
             loadFeed(0, done);
         });
 
-        it('should have at least a single .entry element', function(done) {
+        it('should have at least a single .entry element', function() {
             var entry = $('.feed .entry');
             expect(entry.length).toBeGreaterThan(0);
-            done();
         });
     });
 
@@ -118,8 +115,7 @@ $(function() {
 
         it('Load a new feed', function(done) {
             newContents = $('.feed .entry').text();
-            var update = (newContents != oldContents);
-            expect(update).toBe(true);
+            expect(newContents).not.toEqual(oldContents);
             done();
         })
     });
