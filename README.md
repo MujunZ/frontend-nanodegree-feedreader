@@ -1,5 +1,29 @@
-#All steps required to successfully run the application
+# Frontend NanoDegree Feedreader
 
+> A [Udacity Frontend NanoDegree Project](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001).
+
+## Setup
+Clone the repo
+
+	$ git clone https://github.com/MujunZ/frontend-nanodegree-feedreader.github
+
+## Go to the filder
+
+	$ cd /frontend-nanodegree-feedreader
+
+## Set up localhost (more details see [here](http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python))
+
+	$ python -m SimpleHTTPServer 8080
+
+and you will see the following message:
+
+	Serving HTTP on 0.0.0.0 port 8000 ...
+
+Then type the following address in your browser:
+
+	http://127.0.0.1:8080
+
+## Message when success
 - RSS Feeds
  - are defined
  - urls are defined and not empty
